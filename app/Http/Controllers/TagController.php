@@ -43,7 +43,7 @@ class TagController extends Controller
         $data['slug'] = Str::slug($data['name']);
         Tag::create($data);
         return back()
-            ->with('status', 'Tags has been created!');
+            ->with('status', 'Tags was created successfully!');
     }
 
     /**
@@ -77,7 +77,7 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        // 
     }
 
     /**

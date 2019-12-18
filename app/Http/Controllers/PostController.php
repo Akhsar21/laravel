@@ -94,7 +94,7 @@ class PostController extends Controller
             $post->tags()->sync(array());
         }
 
-        return redirect(route('posts.index'))->with('status', 'Post has been created successfully!');
+        return redirect(route('posts.index'))->with('status', 'The post updated successfully!');
     }
 
     /**
