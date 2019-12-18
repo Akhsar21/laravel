@@ -71,7 +71,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('posts.edit', compact('categories', 'tags', 'post'));
     }
 
     /**
@@ -83,28 +85,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // $request->validate([
-        //     'title' => 'required|min:3',
-        //     'content' => 'required|min:3',
-        //     'category_id' => 'required',
-        //     'image' => 'sometimes|image|file|max:3000',
-        //     'slug' => Str::slug($request['title']),
-        // ]);
-
-        // // $post = Post::first();
-
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $name = time() . '.' . $file->getClientOriginalExtension();
-        //     $path = public_path('images/' . $name);
-        //     Image::make($file)->resize(800, 400)->save($path);
-        //     $oldName = $post->image;
-
-        //     $post->image = $name;
-
-        //     Storage::delete($oldName);
-        // }
-
         $post = Auth::user()->posts()->update($this->validateRequest());
         $this->storeImage($post);
 
