@@ -36,22 +36,20 @@ class CommentController extends Controller
      */
     public function store(Request $request, $post_id)
     {
-        $this->validate($request, [
+        $data = $request->validate([
             'name' => 'required|max:150',
             'email' => 'required|email|max:255',
             'subject' => 'min:3|max:150',
             'message' => 'required|min:5|min:2000',
         ]);
-        $post = Post::find($post_id);
-        $comment = new Comment();
-        $comment->name = $request->name;
-        $comment->email = $request->email;
-        $comment->subject = $request->subject;
-        $comment->message = $request->message;
-        $comment->post()->associate($post);
 
-        $comment->save();
-        return back()->with('status', 'Comment was Addedd');
+        $post = Post::find($post_id);
+
+        $comment = Comment::create($data);
+
+        $comment->post()->associate($post_id);
+
+        return redirect(route('get.blog', [$post]))->with('status', 'Comment was Addedd');
     }
 
     /**
