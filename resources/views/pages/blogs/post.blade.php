@@ -39,7 +39,8 @@
                         <div class="user-details row">
                             <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ $post->user->name }}</a> <span
                                     class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ $post->created_at->format("F m, Y") }}</a> <span
+                            <p class="date col-lg-12 col-md-12 col-6"><a
+                                    href="#">{{ $post->created_at->format("F m, Y") }}</a> <span
                                     class="lnr lnr-calendar-full"></span></p>
                             <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
                                     class="lnr lnr-eye"></span></p>
@@ -104,13 +105,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="comments-area">
+                {{-- <div class="comments-area">
                     <h4>05 Comments</h4>
                     <div class="comment-list">
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="{{ asset('assets/front/img/blog/c5.jpg') }}" class="rounded-circle" alt="">
+                                    <img src="{{ asset('assets/front/img/blog/c5.jpg') }}" class="rounded-circle"
+                                        alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Ina Hayes</a></h5>
@@ -125,8 +127,30 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="comment-form">
+                </div> --}}
+
+                <div id="disqus_thread" class="mt-5"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                    
+                    var disqus_config = function () {
+                    this.page.url = '{{ Request::url() }}';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = {{ $post->id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://laravel-wbcf00fb7z.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments
+                        powered by Disqus.</a></noscript>
+
+                {{-- <div class="comment-form">
                     <h4>Leave a Comment</h4>
                     <form action="{{ route('comments.store', $post->id) }}" method="POST">
                         @csrf
@@ -135,18 +159,20 @@
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
                             </div>
                             <div class="form-group col-lg-6 col-md-12 email">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Enter email address">
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="subject" placeholder="Subject">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege"></textarea>
+                            <textarea class="form-control mb-10" rows="5" name="message"
+                                placeholder="Messege"></textarea>
                         </div>
                         <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
                     </form>
-                </div>
+                </div> --}}
             </div>
             @include('layouts.partials.front.widget')
         </div>
