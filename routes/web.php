@@ -26,3 +26,8 @@ Route::get('blog/{post}', 'PagesController@getBlog')->name('get.blog');
 Route::get('/', 'PagesController@getHome')->name('get.home');
 
 Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage.users')->group(function () {
+    Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+});
