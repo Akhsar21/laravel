@@ -44,7 +44,7 @@
                                     class="lnr lnr-calendar-full"></span></p>
                             <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
                                     class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
+                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#" #dsq-count-scr> Comments</a> <span
                                     class="lnr lnr-bubble"></span></p>
                             <ul class="social-links col-lg-12 col-md-12 col-6">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -178,4 +178,8 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+<script id="dsq-count-scr" src="//akhsar.disqus.com/count.js" async></script>
 @endsection
